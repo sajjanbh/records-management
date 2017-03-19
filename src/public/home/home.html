@@ -1,0 +1,37 @@
+<div class="container" id="main-content">
+  <div class="jumbotron">
+    <div class="form_bg">
+      <fieldset ng-controller="LoginController as login">
+        <form novalidate name="loginForm" ng-submit="submitForm(userForm.$valid)">
+            <div class="text-center">
+              <img src="images/logo.jpg">
+            </div>
+            <br/>
+            <div class="input-group">
+                <!-- <label for="username">User Name:</label> -->
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" name="username" class="form-control" id="username" placeholder="Username" ng-model="login.username" required minlength="4" ng-maxlength="12">
+                <span class="alert-warning" 
+                  ng-if="(loginForm.username.$error.minlength ||
+                  loginForm.username.$error.required) && loginForm.username.$touched">
+                  User Name must be at least 4 characters long!
+                </span>
+            </div><br />
+            <div class="input-group">
+              <!-- <label for="password">Password:</label> -->
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password" ng-model="login.password" required minlength="6" ng-maxlength="20">
+                <span class="alert-warning" 
+                  ng-if="(loginForm.password.$error.minlength ||
+                  loginForm.password.$error.required) && loginForm.password.$touched">
+                  Password cannot be empty!
+                </span>
+            </div><br />
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" id="submit" ng-disabled="loginForm.$invalid" ng-click="login.logIn()">Login</button>
+            </div>
+        </form>
+      </fieldset>
+    </div> <!-- form-bg -->
+  </div> <!-- jumbotron -->
+</div> <!-- container -->
