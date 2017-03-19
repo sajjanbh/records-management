@@ -19,35 +19,35 @@ function routeConfig ($stateProvider) {
       url: '/',
       templateUrl: 'src/public/home/home.html'
     })
-    .state('public.menu', {
-      url: '/menu',
-      templateUrl: 'src/public/menu/menu.html',
-      controller: 'MenuController',
-      controllerAs: 'menuCtrl',
+    .state('public.store', {
+      url: '/store',
+      templateUrl: 'src/public/store/store.html',
+      controller: 'StoreController',
+      controllerAs: 'storeCtrl',
       resolve: {
-        menuCategories: ['MenuService', function (MenuService) {
-          return MenuService.getCategories();
+        storeItems: ['StoreService', function (StoreService) {
+          return StoreService.getStoreItems();
         }]
       }
     })
-    .state('public.menuitems', {
-      url: '/menu/{category}',
-      templateUrl: 'src/public/menu-items/menu-items.html',
-      controller: 'MenuItemsController',
-      controllerAs: 'menuItemsCtrl',
+    .state('public.storeItem', {
+      url: '/store/{item}',
+      templateUrl: 'src/public/store-items/store-items.html',
+      controller: 'StoreItemsController',
+      controllerAs: 'storeItemsCtrl',
       resolve: {
-        menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
-          return MenuService.getMenuItems($stateParams.category);
+        menuItems: ['$stateParams','StoreService', function ($stateParams, StoreService) {
+          return StoreService.getStoreItems($stateParams.item);
         }]
       }
     })
-    .state('public.myinfo', {
-      url: '/my-info',
-      templateUrl: 'src/public/my-info/my-info.html'
+    .state('public.sales', {
+      url: '/sales',
+      templateUrl: 'src/public/sales/sales.html'
     })
-    .state('public.signup', {
-      url: '/sign-up',
-      templateUrl: 'src/public/sign-up/sign-up.html'
+    .state('public.users', {
+      url: '/users',
+      templateUrl: 'src/public/users/users.html'
     });
 }
 })();
