@@ -15,11 +15,11 @@ function routeConfig ($stateProvider) {
       absract: true,
       templateUrl: 'src/public/public.html'
     })
-    .state('public.home', {
+    .state('public.home', { // For login page
       url: '/',
       templateUrl: 'src/public/home/home.html'
     })
-    .state('public.store', {
+    .state('public.store', { // For Store page
       url: '/store',
       templateUrl: 'src/public/store/store.html',
       controller: 'StoreController',
@@ -30,24 +30,60 @@ function routeConfig ($stateProvider) {
         }]
       }
     })
-    .state('public.storeItem', {
-      url: '/store/{item}',
-      templateUrl: 'src/public/store-items/store-items.html',
-      controller: 'StoreItemsController',
-      controllerAs: 'storeItemsCtrl',
+    .state('public.sales', { // For Sales page
+      url: '/sales',
+      templateUrl: 'src/public/sales/sales.html',
+      controller: 'SalesController',
+      controllerAs: 'salesCtrl',
       resolve: {
-        menuItems: ['$stateParams','StoreService', function ($stateParams, StoreService) {
-          return StoreService.getStoreItems($stateParams.item);
+        salesItems: ['SalesService', function (SalesService) {
+          return SalesService.getSalesItems();
         }]
       }
     })
-    .state('public.sales', {
-      url: '/sales',
-      templateUrl: 'src/public/sales/sales.html'
+    .state('public.customers', { // For Customers page
+      url: '/customers',
+      templateUrl: 'src/public/customers/customers.html',
+      controller: 'CustomerController',
+      controllerAs: 'customerCtrl',
+      resolve: {
+        customerItems: ['CustomerService', function (CustomerService) {
+          return CustomerService.getCustomerItems();
+        }]
+      }
     })
-    .state('public.users', {
+    .state('public.vendors', { // For Vendors page
+      url: '/vendors',
+      templateUrl: 'src/public/vendors/vendors.html',
+      controller: 'VendorController',
+      controllerAs: 'vendorCtrl',
+      resolve: {
+        vendorItems: ['VendorService', function (VendorService) {
+          return VendorService.getVendorItems();
+        }]
+      }
+    })
+    .state('public.payments', { // For Payments page
+      url: '/payments',
+      templateUrl: 'src/public/payments/payments.html',
+      controller: 'PaymentController',
+      controllerAs: 'paymentCtrl',
+      resolve: {
+        paymentItems: ['PaymentService', function (PaymentService) {
+          return PaymentService.getPaymentItems();
+        }]
+      }
+    })
+    .state('public.users', { // For Users page
       url: '/users',
-      templateUrl: 'src/public/users/users.html'
+      templateUrl: 'src/public/users/users.html',
+      controller: 'UserController',
+      controllerAs: 'userCtrl',
+      resolve: {
+        userItems: ['UserService', function (UserService) {
+          return UserService.getUserItems();
+        }]
+      }
     });
 }
 })();
