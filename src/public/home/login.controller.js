@@ -9,6 +9,7 @@ function LoginController(LoginService) {
   var $ctrl = this;
   $ctrl.username = "";
   $ctrl.password = "";
+  $ctrl.loggedIn = false;
 
   // Function to check if a user is logged in
   // $ctrl.checkIfLogged = function() {
@@ -25,8 +26,8 @@ function LoginController(LoginService) {
     };
 
     // Login user's info to app service
-    if( LoginService.logIn(userInfo) ) {console.log("logged");
-      $ctrl.loggedIn = true;
+    if( LoginService.logIn(userInfo) ) {
+      $ctrl.loggedIn = true;console.log('true');
       $ctrl.saveMessage = true;
     }
   }

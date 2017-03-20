@@ -11,8 +11,9 @@ function LoginService($http, ApiPath) {
   service.userInfo = {};
   service.loggedIn = false;
 
-  service.logIn = function(category) {
-    console.log("service called");
+  service.logIn = function(userInfo) {
+    console.log(userInfo);
+    return true;
     //return $http.get(ApiPath + '/menu_items/' + category + '.json');
   };
 
